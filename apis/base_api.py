@@ -4,7 +4,7 @@ import pytest
 import requests
 from loguru import logger
 
-from Utils.environment import Environment
+from utils.environment import Environment
 
 
 class BaseApi:
