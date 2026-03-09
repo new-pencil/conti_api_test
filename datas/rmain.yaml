@@ -1,0 +1,324 @@
+register:
+  - title: "注册成功（新用户新车-4轮胎）"
+    data: &register_data
+      customer_phone: "1800000001"
+      plate_number: "BQ1012"
+      company_car: true
+      mileage: 8888
+      purchase_date: "2026-02-27"
+      purchase_photo: "https://d32iiblykc5ytf.cloudfront.net/case/20260126/b4b91ae3-b4e4-433d-817e-b2872918e01b.jpg"
+      tyres:
+        - barcode: "1111111101"
+          pattern: "SportContact 7"
+          section: 225
+          aspect: 40
+          rim: 19
+        - barcode: "1111111102"
+          pattern: "SportContact 7"
+          section: 225
+          aspect: 40
+          rim: 19
+        - barcode: "1111111103"
+          pattern: "SportContact 7"
+          section: 225
+          aspect: 40
+          rim: 19
+        - barcode: "1111111104"
+          pattern: "SportContact 7"
+          section: 225
+          aspect: 40
+          rim: 19
+    expected:
+      code: 0
+      message: "success"
+
+file:
+  - title: "file case成功"
+    data:
+      register_data:
+        <<: *register_data
+      file_data:
+    expected:
+      code: 0
+      message: "success"
+
+#  - title: "已有用户新车-2轮胎注册（最少数量）"
+#    data:
+#      plate_number: "BQ1002"
+#      company_car: true
+#      mileage: "15000"
+#      tyres:
+#        - barcode: "1111111105"
+#          pattern: "Pilot Sport 4"
+#          section: 235
+#          aspect: 45
+#          rim: 18
+#        - barcode: "1111111106"
+#          pattern: "Pilot Sport 4"
+#          section: 235
+#          aspect: 45
+#          rim: 18
+#      purchase_date: "2026-02-08"
+#      purchase_photo: "https://d32iiblykc5ytf.cloudfront.net/case/20260126/b4b91ae3-b4e4-433d-817e-b2872918e01b.jpg"
+#      customer_phone: "17000000001"  # 使用已有用户
+#    expected:
+#      code: 0
+#      message: "success"
+#
+#  - title: "混合规格轮胎注册-3轮胎"
+#    data:
+#      plate_number: "BQ1003"
+#      company_car: false
+#      mileage: "5000"
+#      tyres:
+#        - barcode: "1111111107"
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#        - barcode: "1111111108"
+#          pattern: "Pilot Sport 4"
+#          section: 235
+#          aspect: 45
+#          rim: 18
+#        - barcode: "1111111109"
+#          pattern: "Primacy 4"
+#          section: 205
+#          aspect: 55
+#          rim: 16
+#      purchase_date: "2026-02-07"
+#      purchase_photo: "https://d32iiblykc5ytf.cloudfront.net/case/20260126/b4b91ae3-b4e4-433d-817e-b2872918e01b.jpg"
+#      customer_phone: "17000000002"
+#    expected:
+#      code: 0
+#      message: "success"
+#
+#  # 边界值测试
+#  - title: "公司车辆-高里程注册"
+#    data:
+#      plate_number: "BQ1004"
+#      company_car: true
+#      mileage: "150000"
+#      tyres:
+#        - barcode: "1111111110"
+#          pattern: "SportContact 7"
+#          section: 245
+#          aspect: 40
+#          rim: 20
+#        - barcode: "1111111111"
+#          pattern: "SportContact 7"
+#          section: 245
+#          aspect: 40
+#          rim: 20
+#      purchase_date: "2026-02-06"
+#      purchase_photo: "https://d32iiblykc5ytf.cloudfront.net/case/20260126/b4b91ae3-b4e4-433d-817e-b2872918e01b.jpg"
+#      customer_phone: "17000000003"
+#    expected:
+#      code: 0
+#      message: "success"
+#
+#  - title: "新购车辆-低里程注册"
+#    data:
+#      plate_number: "BQ1005"
+#      company_car: false
+#      mileage: "100"
+#      tyres:
+#        - barcode: "1111111112"
+#          pattern: "Pilot Sport 4"
+#          section: 235
+#          aspect: 45
+#          rim: 18
+#        - barcode: "1111111113"
+#          pattern: "Pilot Sport 4"
+#          section: 235
+#          aspect: 45
+#          rim: 18
+#        - barcode: "1111111114"
+#          pattern: "Pilot Sport 4"
+#          section: 235
+#          aspect: 45
+#          rim: 18
+#        - barcode: "1111111115"
+#          pattern: "Pilot Sport 4"
+#          section: 235
+#          aspect: 45
+#          rim: 18
+#      purchase_date: "2026-02-05"
+#      purchase_photo: "https://d32iiblykc5ytf.cloudfront.net/case/20260126/b4b91ae3-b4e4-433d-817e-b2872918e01b.jpg"
+#      customer_phone: "17000000004"
+#    expected:
+#      code: 0
+#      message: "success"
+#
+#  # 特殊场景测试
+#  - title: "已有用户添加第三辆车（达到车辆上限）"
+#    data:
+#      plate_number: "BQ1006"
+#      company_car: false
+#      mileage: "30000"
+#      tyres:
+#        - barcode: "1111111116"
+#          pattern: "Primacy 4"
+#          section: 205
+#          aspect: 55
+#          rim: 16
+#        - barcode: "1111111117"
+#          pattern: "Primacy 4"
+#          section: 205
+#          aspect: 55
+#          rim: 16
+#      purchase_date: "2026-02-04"
+#      purchase_phone: "https://d32iiblykc5ytf.cloudfront.net/case/20260126/b4b91ae3-b4e4-433d-817e-b2872918e01b.jpg"
+#      customer_phone: "17000000005"  # 假设该用户已有2辆车
+#    expected:
+#      code: 1001  # 预期车辆数超限错误码
+#      message: "用户车辆数已达上限"
+#
+#  - title: "购买日期超过7天限制"
+#    data:
+#      plate_number: "BQ1007"
+#      company_car: false
+#      mileage: "8000"
+#      tyres:
+#        - barcode: "1111111118"
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#        - barcode: "1111111119"
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#      purchase_date: "2026-01-01"  # 超过7天
+#      purchase_photo: "https://d32iiblykc5ytf.cloudfront.net/case/20260126/b4b91ae3-b4e4-433d-817e-b2872918e01b.jpg"
+#      customer_phone: "17000000006"
+#    expected:
+#      code: 1002  # 预期日期超限错误码
+#      message: "购买日期超过7天限制"
+#
+#  - title: "系统中已存在的barcode自动填充信息"
+#    data:
+#      plate_number: "BQ1008"
+#      company_car: false
+#      mileage: "12000"
+#      tyres:
+#        - barcode: "03113770000"  # 系统中存在的barcode
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#        - barcode: "03113770001"  # 系统中存在的barcode
+#          pattern: "Pilot Sport 4"
+#          section: 235
+#          aspect: 45
+#          rim: 18
+#      purchase_date: "2026-02-03"
+#      purchase_photo: "https://d32iiblykc5ytf.cloudfront.net/case/20260126/b4b91ae3-b4e4-433d-817e-b2872918e01b.jpg"
+#      customer_phone: "17000000007"
+#    expected:
+#      code: 0
+#      message: "success"
+#
+#  - title: "车牌号已存在-添加轮胎到已有车辆"
+#    data:
+#      plate_number: "BQ1001"  # 使用已存在的车牌
+#      company_car: false
+#      mileage: "20000"
+#      tyres:
+#        - barcode: "1111111120"
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#        - barcode: "1111111121"
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#      purchase_date: "2026-02-02"
+#      purchase_photo: "https://d32iiblykc5ytf.cloudfront.net/case/20260126/b4b91ae3-b4e4-433d-817e-b2872918e01b.jpg"
+#      customer_phone: "17000000001"  # 与原车主相同
+#    expected:
+#      code: 0
+#      message: "success"
+#
+#  - title: "无效barcode-需要手动输入信息"
+#    data:
+#      plate_number: "BQ1009"
+#      company_car: false
+#      mileage: "5000"
+#      tyres:
+#        - barcode: "INVALID123"  # 无效barcode
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#        - barcode: "INVALID124"  # 无效barcode
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#      purchase_date: "2026-02-01"
+#      purchase_photo: "https://d32iiblykc5ytf.cloudfront.net/case/20260126/b4b91ae3-b4e4-433d-817e-b2872918e01b.jpg"
+#      customer_phone: "17000000008"
+#    expected:
+#      code: 1003  # 预期需要手动输入信息错误码
+#      message: "barcode无效，需要手动输入轮胎信息"
+#
+#  # 异常情况测试
+#  - title: "轮胎数量不足2条"
+#    data:
+#      plate_number: "BQ1010"
+#      company_car: false
+#      mileage: "6000"
+#      tyres:
+#        - barcode: "1111111122"
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#      purchase_date: "2026-01-31"
+#      purchase_photo: "https://d32iiblykc5ytf.cloudfront.net/case/20260126/b4b91ae3-b4e4-433d-817e-b2872918e01b.jpg"
+#      customer_phone: "17000000009"
+#    expected:
+#      code: 1004  # 预期轮胎数量不足错误码
+#      message: "轮胎数量至少为2条"
+#
+#  - title: "轮胎数量超过4条"
+#    data:
+#      plate_number: "BQ1011"
+#      company_car: false
+#      mileage: "7000"
+#      tyres:
+#        - barcode: "1111111123"
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#        - barcode: "1111111124"
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#        - barcode: "1111111125"
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#        - barcode: "1111111126"
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#        - barcode: "1111111127"
+#          pattern: "SportContact 7"
+#          section: 225
+#          aspect: 40
+#          rim: 19
+#      purchase_date: "2026-01-30"
+#      purchase_photo: "https://d32iiblykc5ytf.cloudfront.net/case/20260126/b4b91ae3-b4e4-433d-817e-b2872918e01b.jpg"
+#      customer_phone: "17000000010"
+#    expected:
+#      code: 1005  # 预期轮胎数量超限错误码
+#      message: "轮胎数量最多为4条"

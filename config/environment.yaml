@@ -1,0 +1,20 @@
+env:
+  stage_host: https://conti-tcp-stage.merklechina.com
+
+account:
+  test_retailer:
+    id: 0
+    coc: "<SET_IN_ENV_OR_LOCAL_FILE>"
+    phone: "<SET_IN_ENV_OR_LOCAL_FILE>"
+    name: "<SET_IN_ENV_OR_LOCAL_FILE>"
+  test_customer:
+    id: 0
+    phone: "<SET_IN_ENV_OR_LOCAL_FILE>"
+    name: "<SET_IN_ENV_OR_LOCAL_FILE>"
+
+mysql:
+  host: "<SET_IN_ENV_OR_LOCAL_FILE>"
+  port: 3306
+  user: "<SET_IN_ENV_OR_LOCAL_FILE>"
+  passwd: "<SET_IN_ENV_OR_LOCAL_FILE>"
+  db: "<SET_IN_ENV_OR_LOCAL_FILE>"
