@@ -1,5 +1,6 @@
 .DS_Store
 .idea/
+.gitignore
 logs/
 tokens/
 reports/
