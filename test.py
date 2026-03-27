@@ -1,0 +1,8 @@
+import json
+
+if __name__ == '__main__':
+    x = json.dumps(
+        {'accountId': 3, 'appVersion': '1.9.14.56', 'comments': '', 'customerId': 1517699, 'customerName': 'xiaox', 'customerVehicleId': 1529693, 'deviceDetail': 'iOS', 'email': None, 'inviteCode': '', 'invoiceNumber': None, 'manufacturerId': 2011, 'mileage': 397, 'mileageImage': None, 'modelId': 24856, 'operatorId': 1517699, 'operatorType': 'CUSTOMER', 'os': 'ios', 'osVersion': '26.2', 'phone': '1701111117', 'plateNumber': 'PKP4785', 'proofOfPurchase': 'https://d32iiblykc5ytf.cloudfront.net/case/20251218/bd704e7f-4b2e-4b26-bd51-3008e88b42ca.jpg', 'purchaseDate': '2026-03-23', 'registrationItems': [{'articleCode': '03113770000', 'dotWeek': '0126', 'initalMileage': 397, 'internalProductId': None, 'origin': 'MY', 'plantCode': '1AF', 'productAspect': 60, 'brandName': 'Continental', 'productDot': '1AF0327RY', 'productId': '1111111115', 'productPattern': 'UltraContact UC6 SUV', 'productRim': 20, 'productSection': 215, 'serialNumberImage': '', 'wheelPostion': '1'}, {'articleCode': '03113770000', 'dotWeek': '0126', 'initalMileage': 397, 'internalProductId': None, 'origin': 'MY', 'plantCode': '1AF', 'productAspect': 55, 'brandName': 'Continental', 'productDot': '1AF0327RY', 'productId': '1111111117', 'productPattern': 'SportContact 7', 'productRim': 15, 'productSection': 215, 'serialNumberImage': '', 'wheelPostion': '2'}], 'retailerId': 36827130, 'retailerName': 'Test_retailer_my'},
+        indent=4
+    )
+    print(x)

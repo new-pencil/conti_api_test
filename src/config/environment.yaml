@@ -1,0 +1,20 @@
+env:
+  stage_host: https://conti-tcp-stage.merklechina.com
+
+# account:
+#   test_retailer:
+#     id: 0
+#     coc: 0007700236
+#     phone: 1755555555
+#     name: SOON LEE HIN_ac
+#   test_customer:
+#     id: 1517699
+#     phone: 1701111117
+#     name: xiaox
+
+mysql:
+  host: 10.22.50.52
+  port: 3306
+  user: ctcp_dev
+  passwd: FyygfXur8gaWlz5d
+  db: STG
