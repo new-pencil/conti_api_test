@@ -1,3 +1,4 @@
+import logging
 import os
 
 import pytest
@@ -16,6 +17,8 @@ from tests.data.mock_data import (
     mock_retailer_info
 )
 
+logger = logging.getLogger()
+
 
 # 登录相关fixture
 @pytest.fixture(scope="class")
@@ -24,6 +27,8 @@ def retailer_login_info():
     retailer = mock_retailer_info()
     if not retailer:
         return None
+
+    logger.debug(f"=======retailer: {retailer}============")
     
     # 从文件中获取token，没有时存入
     token_file = os.path.join(TOKENS_DIR, f"retailer_{retailer['phone']}.txt")
@@ -31,7 +36,12 @@ def retailer_login_info():
         with open(token_file, "r") as f:
             token = f.read().strip()
     else:
-        token = RetailerLoginApi().login(retailer_phone=retailer['phone'])["data"]["token"]
+        login_res = RetailerLoginApi().login(retailer_phone=retailer['phone'])
+        token = login_res["data"]["token"]
+        if login_res.get("data") and login_res["data"].get("retailer"):
+            retailer_id = login_res["data"]["retailer"].get("id")
+            if retailer_id:
+                retailer["id"] = retailer_id
         with open(token_file, "w") as f:
             f.write(token)
     

@@ -11,7 +11,7 @@ class TestCustomerVehicleFlow:
 
     @allure.story("车辆管理")
     @allure.title("customer vehicle management flow")
-    # @pytest.mark.xxx
+    @pytest.mark.cv
     def test_customer_vehicle_management_flow(self, customer_vehicle_flow, customer_login_info, vehicle_mock_data):
         # 获取当前登录的用户信息
         current_customer = customer_login_info

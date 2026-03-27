@@ -54,7 +54,14 @@ class RetailerMainFlow:
         vehicle_id = Extract.extract_json(res, "data.customerVehicleId")
         customer_id = Extract.extract_json(res, "data.customerId")
         if not customer_id or not registration_id or not vehicle_id:
-            raise ValueError("以下数据不齐，registration_id{registration_id} vehicle_id{vehicle_id} customer_id{customer_id}")
+            logger.error(
+                f"注册返回数据不齐: registration_id={registration_id}, "
+                f"vehicle_id={vehicle_id}, customer_id={customer_id}, res={res}"
+            )
+            raise ValueError(
+                f"以下数据不齐，registration_id={registration_id} "
+                f"vehicle_id={vehicle_id} customer_id={customer_id}"
+            )
 
         self.context['customer']['id'] = customer_id
         self.context['vehicle']['id'] = vehicle_id

@@ -1,0 +1,6 @@
+.DS_Store
+.idea/
+logs/
+tokens/
+reports/
+docs/

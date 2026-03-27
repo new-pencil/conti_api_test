@@ -1,5 +1,0 @@
-2026-03-26 14:50:39,453 - INFO - request.py:36 - 【请求】POST https://conti-tcp-stage.merklechina.com/account/sms/send None
-2026-03-26 14:50:39,453 - INFO - request.py:37 - 【headers】{'Content-Type': 'application/json', 'app-ver': '3.0.0', 'language': 'en_MY', 'Authorization': 'Consumer_b946f6a4-5236-48fb-96f0-161a470b8419'}
-2026-03-26 14:50:39,453 - INFO - request.py:38 - 【请求数据】{'accessId': 'access_id_3', 'accessKey': 'access_key_3', 'phone': '169557157'}
-2026-03-26 14:50:39,806 - INFO - request.py:43 - 【响应码】200
-2026-03-26 14:50:39,806 - INFO - request.py:44 - 【响应体】{'message': 'success', 'code': 0, 'success': True, 'data': '8539'}

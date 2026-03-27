@@ -76,6 +76,9 @@ def mock_vehicle_info(use_existing=False, customer_id=None):
         )
         if not result:
             raise ValueError("该用户下面没有车辆，请先添加")
+        company_car = result['company_car']
+        if isinstance(company_car, (bytes, bytearray)):
+            company_car = bool(company_car[0])
         vehicle = {
             "id": result['id'],
             "manufacturer_id": result['manufacturer_id'],
@@ -83,20 +86,8 @@ def mock_vehicle_info(use_existing=False, customer_id=None):
             "plate_number": result['plate_number'],
             "model_name": result['model_name'],
             "manufacturer_name": result['manufacturer_name'],
-            "company_car": result['company_car']
+            "company_car": company_car
         }
-        # else:
-        #     # 如果客户没有车辆，生成新车
-        #     manu, model = DataFactory.generate_manu_model()
-        #     vehicle = {
-        #         "id": None,
-        #         "manufacturer_id": manu,
-        #         "model_id": model,
-        #         "plate_number": DataFactory.generate_plate_number(),
-        #         "model_name": None,
-        #         "manufacturer_name": None,
-        #         "company_car": random.choice([True, False])
-        #     }
     else:
         # 生成新车
         manu, model = DataFactory.generate_manu_model()
@@ -172,5 +163,3 @@ def validate_mock_info():
     full['tread_depth'] = tread_depth
     full['final_mileage'] = final_mileage
     return full
-
-

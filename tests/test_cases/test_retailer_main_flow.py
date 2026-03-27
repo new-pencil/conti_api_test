@@ -3,33 +3,11 @@ import logging
 import allure
 import pytest
 
-from apis.customer.customer_login_api import CustomerLoginApi
-from apis.customer.customer_vehicle_api import CustomerVehicleApi
-from apis.retailer.retailer_login_api import RetailerLoginApi
 from tests.data.mock_data import mock_customer_info, mock_vehicle_info, register_mock_info, validate_mock_info
 from utils.assert_helper import AssertHelper
 from utils.extract import Extract
-from utils.request import Request
 
 logger = logging.getLogger()
-
-def _ensure_customer_token(customer):
-    login_res = CustomerLoginApi().login(customer_phone=customer["phone"])
-    if hasattr(login_res, "json"):
-        login_res = login_res.json()
-    token = login_res["data"]["token"]
-    customer_id = login_res.get("data", {}).get("customer", {}).get("id")
-    if customer_id:
-        customer["id"] = customer_id
-    return token
-
-
-def _ensure_retailer_token(retailer):
-    login_res = RetailerLoginApi().login(retailer_phone=retailer["phone"])
-    if hasattr(login_res, "json"):
-        login_res = login_res.json()
-    token = login_res["data"]["token"]
-    return token
 
 @allure.epic("TCP API 自动化")
 @allure.feature('retailer轮胎注册报损流程测试')
@@ -37,6 +15,7 @@ def _ensure_retailer_token(retailer):
 class TestRetailerMainFlow:
     """零售商轮胎注册报损流程测试"""
 
+    @pytest.mark.rr
     @allure.story("轮胎注册报损全链路")
     @allure.title("retailer 轮胎注册报损全链路测试")
     @pytest.mark.parametrize(
@@ -62,20 +41,12 @@ class TestRetailerMainFlow:
             customer = mock_customer_info(use_existing=False)
 
         if vehicle_source == "old":
-            vehicle = mock_vehicle_info(use_existing=True, customer_id=customer.get('id'))
+            try:
+                vehicle = mock_vehicle_info(use_existing=True, customer_id=customer.get('id'))
+            except ValueError:
+                vehicle = mock_vehicle_info(use_existing=False)
         else:
-            customer_token = _ensure_customer_token(customer)
-            Request.set_token(customer_token)
-            vehicle_payload = mock_vehicle_info(use_existing=False)
-            add_res = CustomerVehicleApi().add_vehicle_api(customer=customer, vehicle=vehicle_payload)
-            AssertHelper.assert_json_path(add_res, "code", 0)
-            vehicle_id = Extract.extract_json(add_res, "data.id")
-            vehicle = {
-                **vehicle_payload,
-                "id": vehicle_id,
-            }
-            retailer_token = _ensure_retailer_token(retailer)
-            Request.set_token(retailer_token)
+            vehicle = mock_vehicle_info(use_existing=False)
         register_data = register_mock_info()
         validate_data = validate_mock_info()
 

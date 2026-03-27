@@ -15,7 +15,7 @@ logger = Logger.get_logger()
 class TestCustomerMainFlow:
     """客户轮胎注册报损流程测试"""
 
-    @pytest.mark.xxx
+    @pytest.mark.cr
     @allure.story("轮胎注册报损全链路")
     @allure.title(f"customer 轮胎注册报损全链路")
     @pytest.mark.parametrize(

@@ -1,3 +1,7 @@
+import json
+
+import json
+
 import allure
 import requests
 
@@ -44,7 +48,10 @@ class Request:
             logger.info(f"【响应体】{res.json()}")
 
             allure.attach(str(request_data), "请求参数")
-            allure.attach(res.json(), "响应结果")
+            try:
+                allure.attach(json.dumps(res.json(), ensure_ascii=False), "响应结果")
+            except Exception:
+                allure.attach(res.text, "响应结果")
 
             return res.json()
 
